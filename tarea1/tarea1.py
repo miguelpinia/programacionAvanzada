@@ -39,3 +39,14 @@ def diagonales(cuadro, constante):
     sum_1 = sum(cuadro[i][i] for i in range(n))
     sum_2 = sum(cuadro[i][(n - 1) - i] for i in range(n))
     return sum_1 == constante == sum_2
+
+def valida_cuadro(cuadro, constante):
+    """
+    Valida que un cuadro mágico sea valido para la constante
+    dada. Para esto, valida que la suma de todas sus columnas,
+    renglones y diagonales sea igual al valor de la constante mágica
+    dada como parámetro.
+    """
+    return diagonales(cuadro, constante) \
+        and horizontales(cuadro, constante) \
+        and verticales(cuadro, constante)
