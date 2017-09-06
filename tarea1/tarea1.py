@@ -58,6 +58,24 @@ class Queue(deque):
         """Saca un elemento al principio de la cola."""
         self.popleft()
 
+
+def valida_renglon(cuadro, renglon, constante):
+    """
+    Dados el cuadrado mágico, el índice del renglón a validar y el
+    valor de la constante mágica, se realiza la suma de los elementos
+    y se verifica si dicha suma es igual a la de la constante dada."""
+    suma_parcial = sum(valor for valor in cuadro[renglon])
+    return suma_parcial == constante
+
+def valida_columna(cuadro, columna, constante):
+    """
+    Dados el cuadrado mágico, el índice de la columna a validar y
+    el valor de constante mágica, se realiza la suma de los elementos
+    para dicha columan y se verifica si dicha suma es igual a la de la
+    constante dada."""
+    suma_parcial = sum(renglon[columna] for renglon in cuadro)
+    return suma_parcial == constante
+
 def constante_magica(n):
     """Calcula la constante mágica para un número n. La formula para
     calcular la constante mágica es n * (n ** 2 + 1) / 2."""
@@ -69,9 +87,8 @@ def verticales(cuadro, constante):
     de los elementos del cuadro sea igual al valor de la constante
     mágica para el cuadro.
     """
-    for column in range(len(cuadro)):
-        suma_parcial = sum(renglon[column] for renglon in cuadro)
-        if suma_parcial != constante:
+    for columna in range(len(cuadro)):
+        if not valida_columna(cuadro, columna, constante):
             return False
     return True
 
@@ -81,9 +98,8 @@ def horizontales(cuadro, constante):
     de los elementos del cuadro sea igual al valor de la constante
     mágica para el cuadro. Este valor es pasado como parámetro.
     """
-    for renglon in cuadro:
-        suma_parcial = sum(val for val in renglon)
-        if suma_parcial != constante:
+    for renglon in range(len(cuadro)):
+        if not valida_renglon(cuadro, renglon, constante):
             return False
     return True
 
