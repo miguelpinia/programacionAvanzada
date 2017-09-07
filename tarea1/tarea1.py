@@ -58,6 +58,7 @@ class Queue(deque):
         """Saca un elemento al principio de la cola."""
         self.popleft()
 
+cuadro = [[4, 5, 16, 9], [14, 11, 2, 7], [1, 8, 13, 12], [15, 10, 3, 6]]
 
 def valida_renglon(cuadro, renglon, constante):
     """
@@ -125,3 +126,104 @@ def valida_cuadro(cuadro, constante):
         and diagonales(cuadro, constante) \
         and horizontales(cuadro, constante) \
         and verticales(cuadro, constante)
+
+###################################################
+# Vamos a escribir código hasta que algo funcione #
+###################################################
+
+cuadro = [[0 for i in range(3)] for i in range(3)]
+totalSqs = 3*3
+posible = [True for i in range(totalSqs)]
+constante = constante_magica(3)
+numSquares = 0
+
+def testRenglon(c, const):
+    for i in range(len(c)):
+        test = 0
+        unfilled = False
+        for j in range(len(c[i])):
+            test += c[i][j]
+            if c[i][j] == 0:
+                unfilled = True
+        if not unfilled and test != const:
+            return False
+    return True
+
+def testCols(c, const):
+    for j in range(len(c[0])):
+        test = 0
+        unfilled = False
+        for i in range(len(c)):
+            test += c[i][j]
+            if c[i][j] == 0:
+                unfilled = True
+        if not unfilled and test != const:
+            return False
+    return True
+
+def testDiagonales(c, const):
+    test = 0
+    unfilled = False
+    for i in range(len(c)):
+        test += c[i][i]
+        if c[i][i] == 0:
+            unfilled = True
+    if not unfilled and test != const:
+        return False
+
+    test = 0
+    unfilled = False
+    for i in range(len(c)):
+        test += c[i][len(c) - 1  - i]
+        if (c[i][len(c) - 1- i]) == 0:
+            unfilled = True
+    if not unfilled and test != const:
+        return False
+    return True
+
+def pretty_print(c):
+    for row in c:
+        print('\t'.join(str(e) for e in row))
+
+def llena(c, row, col, const):
+    if not testRenglon(c, const) or not testCols(c, const) or not testDiagonales(c, const):
+        return
+    if row == len(c):
+        print("\n\n")
+        pretty_print(c)
+        print("\n\n")
+        global numSquares
+        numSquares += 1
+        return
+    for i in range(totalSqs):
+        if posible[i]:
+            c[row][col] = i + 1
+            posible[i] = False
+            newCol = col + 1
+            newRow = row
+            if newCol == len(c):
+                newRow += 1
+                newCol = 0
+            llena(c, newRow, newCol, const)
+            c[row][col] = 0
+            posible[i] = True
+
+def main(n):
+    cuadro = [[0 for i in range(n)] for i in range(n)]
+    constante = constante_magica(n)
+    llena(cuadro, 0, 0, constante)
+    print("Hay {} soluciones".format(numSquares))
+
+main(3)
+
+########################################################################
+# Probamos la salida, como por el momento sólo las imprimo en lugar de #
+# meterlas en alguna lista, tengo que probar a mano que todas las      #
+# soluciones son correctas :c                                          #
+########################################################################
+
+
+l = [[[2, 7, 6], [9, 5, 1], [4, 3, 8]], [[2, 9, 4], [7, 5, 3], [6, 1, 8]], [[4, 3, 8], [9, 5, 1], [2, 7, 6]], [[4, 9, 2], [3, 5, 7], [8, 1, 6]], [[6, 1, 8], [7, 5, 3], [2, 9, 4]], [[6, 7, 2], [1, 5, 9], [8, 3, 4]], [[8, 1, 6], [3, 5, 7], [4, 9, 2]], [[8, 3, 4], [1, 5, 9], [6, 7, 2]]]
+
+for x in l:
+    print("Funcionó: {}".format(valida_cuadro(x, 15)))
