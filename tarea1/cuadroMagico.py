@@ -25,8 +25,6 @@ def prueba_diagonales(cuadro, constante):
     n = len(cuadro)
     diagonal_1 = [cuadro[i][i] for i in range(n)]
     diagonal_2 = [cuadro[i][(n - 1) - i] for i in range(n)]
-    sin_llenar_1 = 0 in diagonal_1
-    sin_llenar_2 = 0 in diagonal_1
     if not (0 in diagonal_1) and sum(diagonal_1) != constante:
         return False
     if not (0 in diagonal_2) and sum(diagonal_2) != constante:
