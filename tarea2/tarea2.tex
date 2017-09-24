@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{algorithm}
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{array, tabularx}
+\usepackage[left=3.2cm,right=3.2cm,top=3.2cm,bottom=3cm]{geometry}
+\usepackage{fancyhdr}
+\graphicspath{ {./figures/} }
+\makeatletter
+\renewcommand{\ALG@name}{Algoritmo}
+\makeatother
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\author{Miguel Angel Piña Avelino\\Cinthia Rodríguez Maya}
+\date{\today}
+\title{Tarea 2\\Programación Avanzanda}
+\fancyhf{}
+\rhead{Programación Avanzada}
+\lhead{Tarea 2}
+\rfoot{Página \thepage}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Demostrar que el siguiente código es correcto:
+\begin{verbatim}
+{a = b} if a == b then m := a else m := b {m := a}
+\end{verbatim}
+
+\item Explicar que hacen las siguientes rutinas, encontrando el
+  invariante y demostrar que es válido por inducción matemática.
+
+  \begin{algorithm}
+    \caption{}
+    \begin{algorithmic}
+      \Procedure{COMP}{X, Y; Z}
+      \State $Z \leftarrow X$
+      \State $W \leftarrow Y$
+      \While{W > 0}
+      \State $Z \leftarrow Z + Y$
+      \State $W \leftarrow W - 1$
+      \EndWhile
+      \State \textbf{return} Z
+      \EndProcedure
+    \end{algorithmic}
+  \end{algorithm}
+
+  \begin{algorithm}
+    \caption{}
+    \begin{algorithmic}
+      \Procedure{DIFF}{X, Y; Z}
+      \State $Z \leftarrow X$
+      \State $W \leftarrow Y$
+      \While{W > 0}
+      \State $Z \leftarrow Z - 1$
+      \State $W \leftarrow W - 1$
+      \EndWhile
+      \State \textbf{return} Z
+      \EndProcedure
+    \end{algorithmic}
+  \end{algorithm}
+
+\item Demuestre si la siguiente terna de Hoare es válida:
+
+
+\begin{verbatim}
+{k > n} if (k < n) k := n else n:= k {n = k}
+\end{verbatim}
+
+\item Dada la siguiente función:
+\begin{verbatim}
+public static int calcula(int n) {
+    int c = 1;
+    if (n == 0 || n == 1)
+        return 1;
+    else
+        for (int i = 2; i <= n; i++)
+            c = c * i;
+    return c;
+}
+\end{verbatim}
+  Demuestre que la siguiente terna de Hoare es válida:
+
+\begin{equation*}
+\{\}  w:= calcula(n) \{w \ge 2^{n - 1}\}
+\end{equation*}
+
+\end{enumerate}
+
+\end{document}
