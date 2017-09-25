@@ -1,0 +1,96 @@
+  \begin{proof}[Solución]
+    Encontremos el invariante primero. Sean $Z_n$ y $W_n$ los valores
+    de \textit{Z} y \textit{W} en la iteración $n \ge 0$ dentro del
+    ciclo while. Veamos la evolución de $Z_n$ y $W_n$ a través del
+    ciclo:
+
+    En la iteración 0 tenemos:
+
+    \begin{equation*}
+      \begin{split}
+        Z_0 = X,\\ W_0= Y
+      \end{split}
+    \end{equation*}
+
+
+
+    En la iteración 1:
+
+    \begin{equation*}
+      \begin{split}
+        Z_1 = Z_0 + Y = X + Y,\\W_1 = W_0 - 1 = Y - 1
+      \end{split}
+    \end{equation*}
+
+    En la iteración 2:
+
+    \begin{equation*}
+      \begin{split}
+        Z_2 = Z_1 + Y = X + 2Y,\\W_2 = W_1 - 1 = Y - 2
+      \end{split}
+    \end{equation*}
+
+    y en la iteración n:
+
+    \begin{equation}
+      \label{Zn}
+      \begin{split}
+        Z_n = Z_{n-1} + Y = X + nY,\\W_n = W_{n-1} - 1 = Y - n
+      \end{split}
+    \end{equation}
+
+    De \ref{Zn} tenemos que:
+
+    \begin{equation}
+        n = Y - W_n \Rightarrow Z_n = X + Y(Y - W_n) = X + Y^2 - YW_n
+    \end{equation}
+
+    P.D. $Z_n = X + Y^2 - YW_n$ es invariante.
+
+    \textbf{Caso base:} n = 0\\
+    \begin{equation*}
+      Z_0 = X + Y^2 - YW_0 = X + Y^2 - YY = X + Y^2 - Y^2 = X
+    \end{equation*}
+
+    Se cumple que $Z_0 = X$\\
+    \textbf{Hipótesis de inducción:} Supongamos que en el paso n-ésimo
+    se cumple que:
+
+    \begin{equation}
+      Z_n = X + Y^2-YW_n
+    \end{equation}
+
+   \textbf{Paso Inductivo:} P.D. que en el paso n + 1 es verdadera la
+   relación:
+
+   En la iteración n + 1, tenemos que:
+
+   \begin{equation*}
+     \begin{split}
+       Z_{n+1} = X + (n + 1)Y\\
+       W_{n+1} = Y - (n + 1)
+     \end{split}
+   \end{equation*}
+
+   Entonces:
+
+   \begin{equation*}
+     \begin{split}
+       Z_{n+1} & = X + (n + 1)Y = X + nY + Y \\
+       & = X + Y(Y - W_n) + Y \hspace{2cm}\ldots \text{usando el hecho que n = } Y
+       - W_n\\
+       & = X + Y^2 - YW_n + Y\\
+       & = X + Y^2 - Y(W_n - 1)\\
+       & = X + Y^2 - Y(Y - n - 1) \hspace{1.5cm}\ldots W_n = Y - n\\
+       & = X + Y^2 - Y(Y - (n + 1))\\
+       & = X + Y^2 - YW_{n + 1} \hspace{2.5cm}\ldots W_{n+1} = Y - (n + 1)
+     \end{split}
+   \end{equation*}
+
+   Por lo tanto se cumple el paso inductivo y por el principio de
+   inducción $Z_n = X + nY = X + Y(Y - W_n) = X + Y^2 - YW_n$.
+
+   \textbf{Este procedimiento lo que hace es calcular $X + Y^2$, en la
+     iteración 0, Z vale X y cuando la iteración n = Y,  la rutina
+     regresa $Z = X + Y^2$, terminando el ciclo y la ejecución}
+  \end{proof}
