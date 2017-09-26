@@ -1,0 +1,86 @@
+\begin{proof}[Solución]
+Para demostrar la correctez del código anterior, tendremos que demostrar:
+\newline
+$\{a=b \wedge a=b \} \hspace*{1cm}  m:=a \hspace*{.5cm} \{m=a \} \hspace*{.5cm} (1)$   
+\newline
+$\{a=b \wedge \neg (a=b) \} \hspace*{.5cm}  m:=b \hspace*{.5cm} \{m=a \} \hspace*{.5cm} (2)$   
+\vspace*{0.5cm}
+\newline
+P.D (1) ie $ \{a=b \wedge a=b \} \hspace*{0.3cm}  m:=a \hspace*{.3cm} \{m=a \}$   
+\vspace*{0.5cm}
+\newline
+Demostración
+\vspace*{0.3cm}
+\newline
+Sabemos que:
+\newline
+Dado $\{P\} V:=E \{Q\}$
+\newline
+$\Rightarrow  \{P\} = \{Q_{E}^{V} \} = \{V=E, Q \} $
+\vspace*{0.3cm}
+\newline
+Usando la definición anterior, tenemos que:
+Si $ \{a=b \wedge a=b \} \hspace*{0.3cm}  m:=a \hspace*{.3cm} \{m=a \}$  
+\newline
+$ \{ P \} = \{ (m=a)_{a}^{m}   \} = \{m=a,(m=a)\} $
+\newline
+$ \hspace*{0.8cm} =\{ a=a \}$
+\newline
+$ \hspace*{0.8cm} = \{ \} $
+\newline
+$ \hspace*{0.8cm} \Rightarrow  \{ \} \hspace*{0.3cm} m:=a \hspace*{0.3cm} \{ m=a \} $
+\newline
+Sabemos que $ \{ \} $ fortalece cualquier aseveración.
+\vspace*{0.3cm}
+\newline
+Por lo tanto tenemos:
+\newline
+$ \{a=b \wedge a=b \} \hspace*{0.3cm} \Rightarrow  \cancel{\{ \}}$
+\newline
+$ \hspace*{0.8cm} \cancel{\{ \}} \hspace*{0.3cm} m:=a \hspace*{0.3cm} \{ m=a \} $
+\newline
+\noindent\rule{6cm}{0.4pt}
+\newline
+$ \{a=b \wedge a=b \} \hspace*{0.3cm}  m:=a \hspace*{.3cm} \{m=a \}$
+\vspace*{0.3cm}
+\newline
+Por lo tanto (1) es válida
+\vspace*{0.5cm}
+\newline
+P.D (2) ie $\{a=b \wedge \neg (a=b) \} \hspace*{.5cm}  m:=b \hspace*{.5cm} \{m=a \}  $ 
+\newline
+Sabemos que:
+\newline
+Dado $\{P\} V:=E \{Q\}$
+\newline
+$\Rightarrow  \{P\} = \{Q_{E}^{V} \} = \{V=E, Q \} $
+\vspace*{0.3cm}
+\newline
+Usando la definición anterior, tenemos que:
+Si $\{a=b \wedge \neg (a=b) \} \hspace*{.5cm}  m:=b \hspace*{.5cm} \{m=a \} $  
+\newline
+$ \{ P \} = \{ (m=a)_{b}^{m}   \} = \{m=a,(m=a)\} $
+\newline
+$ \hspace*{0.8cm} = \{ b=a \} $
+\newline
+$ \hspace*{0.8cm} \Rightarrow  \{ b=a \} \hspace*{0.3cm} m:=b \hspace*{0.3cm} \{ m=a \} $
+\vspace*{0.3cm}
+\newline
+Pero como $P \wedge \neg P \Rightarrow false $ y nosotros tenemos: $a=b \wedge \neg (a=b) $
+\newline 
+Y sabemos que \emph{false} implica cualquier aseveración, podemos concluir que (2) es verdadera.
+\vspace*{0.3cm}
+\newline
+Como (1) y (2) son ciertas, tenemos entonces:
+\vspace*{0.3cm}
+\newline
+$ \{a=b \wedge a=b \} \hspace*{1cm}  m:=a \hspace*{.5cm} \{m=a \} $
+\newline
+$ \{a=b \wedge \neg (a=b) \} \hspace*{.5cm}  m:=b \hspace*{.5cm} \{m=a \} $
+\newline
+\noindent\rule{10.5cm}{0.4pt}
+\newline
+$ \{a = b \} \hspace*{0.3cm} if \hspace*{0.3cm} a == b \hspace*{0.3cm} then \hspace*{0.3cm} m := a \hspace*{0.3cm} else \hspace*{0.3cm} 
+m := b \hspace*{0.3cm} \{m := a \}  $
+
+\end{proof}

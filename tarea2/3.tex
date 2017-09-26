@@ -1,0 +1,102 @@
+\begin{proof}[Solución]
+Para demostrar la correctez del código anterior, tendremos que demostrar:
+\newline
+$\{(k>n) \wedge (k<n) \} \hspace*{0.5cm}  k:=n \hspace*{.5cm} \{n=k \} \hspace*{.5cm} (1)$   
+\newline
+$\{k>n \wedge \neg (k<n) \} \hspace*{0.5cm}  n:=k \hspace*{.5cm} \{n=k \} \hspace*{.5cm} (2)$   
+\vspace*{0.5cm}
+\newline
+P.D (1) ie $ \{(k>n) \wedge (k<n) \} \hspace*{0.3cm}  k:=n \hspace*{.5cm} \{n=k \} $   
+\vspace*{0.5cm}
+\newline
+Demostración
+\vspace*{0.3cm}
+\newline
+Sabemos que:
+\newline
+Dado $\{P\} V:=E \{Q\}$
+\newline
+$\Rightarrow  \{P\} = \{Q_{E}^{V} \} = \{V=E, Q \} $
+\vspace*{0.3cm}
+\newline
+Usando la definición anterior, tenemos que:
+Si $ \{(k>n) \wedge (k<n) \} \hspace*{0.5cm}  k:=n \hspace*{.5cm} \{n=k\} $  
+\newline
+$ \{ P \} = \{ (n=k)_{n}^{k} \} = \{k=n,(n=k)\} $
+\newline
+$ \hspace*{0.8cm} =\{ n=n \}$
+\newline
+$ \hspace*{0.8cm} = \{ \} $
+\newline
+$ \hspace*{0.8cm} \Rightarrow  \{ \} \hspace*{0.3cm} k:=n \hspace*{.5cm} \{n=k\} $
+\newline
+Sabemos que $ \{ \} $ fortalece cualquier aseveración.
+\vspace*{0.3cm}
+\newline
+Por lo tanto tenemos:
+\newline
+$ \{(k>n) \wedge (k<n) \} \hspace*{0.3cm} \Rightarrow  \cancel{\{ \}}$
+\newline
+$ \hspace*{0.8cm} \cancel{\{ \}} \hspace*{0.3cm} k:=n \hspace*{.5cm} \{n=k\}$
+\newline
+\noindent\rule{6.5cm}{0.4pt}
+\newline
+$ \{(k>n) \wedge (k<n) \} \hspace*{0.3cm}  k:=n \hspace*{0.3cm} \{n=k \}$
+\vspace*{0.3cm}
+\newline
+Por lo tanto (1) es válida
+\vspace*{0.5cm}
+\newline
+
+
+P.D (2) ie $\{k>n \wedge \neg (k<n) \} \hspace*{.5cm}  n:=k \hspace*{.5cm} \{n=k \} $ 
+\vspace*{0.5cm}
+\newline
+Demostración
+\vspace*{0.3cm}
+\newline
+Sabemos que:
+\newline
+Dado $\{P\} V:=E \{Q\}$
+\newline
+$\Rightarrow  \{P\} = \{Q_{E}^{V} \} = \{V=E, Q \} $
+\vspace*{0.3cm}
+\newline
+Usando la definición anterior, tenemos que:
+Si $ \{k>n \wedge \neg (k<n) \} \hspace*{.5cm}  n:=k \hspace*{.5cm} \{n=k \} $  
+\newline
+$ \{ P \} = \{ (n=k)_{k}^{n} \} = \{n=k,(n=k)\} $
+\newline
+$ \hspace*{0.8cm} =\{ k=k \}$
+\newline
+$ \hspace*{0.8cm} = \{ \} $
+\newline
+$ \hspace*{0.8cm} \Rightarrow  \{ \} \hspace*{0.3cm} n:=k \hspace*{.5cm} \{n=k\} $
+\newline
+Sabemos que $ \{ \} $ fortalece cualquier aseveración.
+\vspace*{0.3cm}
+\newline
+Por lo tanto tenemos:
+\newline
+$ \{(k>n) \wedge \neg(k<n) \} \hspace*{0.3cm} \Rightarrow  \cancel{\{ \}}$
+\newline
+$ \hspace*{0.8cm} \cancel{\{ \}} \hspace*{0.3cm} n:=k \hspace*{.5cm} \{n=k\}$
+\newline
+\noindent\rule{6.5cm}{0.4pt}
+\newline
+$ \{(k>n) \wedge \neg(k<n) \} \hspace*{0.3cm}  n:=k \hspace*{0.3cm} \{n=k \}$
+\vspace*{0.3cm}
+\newline
+Por lo tanto (2) es válida
+\newline
+Como (1) y (2) son ciertas, tenemos entonces:
+\vspace*{0.3cm}
+\newline
+$\{(k>n) \wedge (k<n) \} \hspace*{0.5cm}  k:=n \hspace*{.5cm} \{n=k \} $
+\newline
+$\{k>n \wedge \neg (k<n) \} \hspace*{.5cm}  n:=k \hspace*{.5cm} \{n=k \} $
+\newline
+\noindent\rule{9cm}{0.4pt}
+\newline
+$ \{k > n\} \hspace*{.3cm} if (k < n) \hspace*{.3cm} k := n \hspace*{.3cm} else \hspace*{.3cm} n:= k \hspace*{.3cm} \{n = k\} $
+\end{proof}
