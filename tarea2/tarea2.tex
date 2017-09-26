@@ -52,7 +52,7 @@
       \Procedure{COMP}{X, Y; Z}
       \State $Z \leftarrow X$
       \State $W \leftarrow Y$
-      \While{W > 0}
+      \While{$W > 0$}
       \State $Z \leftarrow Z + Y$
       \State $W \leftarrow W - 1$
       \EndWhile
@@ -70,7 +70,7 @@
       \Procedure{DIFF}{X, Y; Z}
       \State $Z \leftarrow X$
       \State $W \leftarrow Y$
-      \While{W > 0}
+      \While{$W > 0$}
       \State $Z \leftarrow Z - 1$
       \State $W \leftarrow W - 1$
       \EndWhile
@@ -78,6 +78,8 @@
       \EndProcedure
     \end{algorithmic}
   \end{algorithm}
+
+  \input{2.2}
 
 \item Demuestre si la siguiente terna de Hoare es válida:
 
@@ -101,7 +103,7 @@ public static int calcula(int n) {
   Demuestre que la siguiente terna de Hoare es válida:
 
 \begin{equation*}
-\{\}  w:= calcula(n) \{w \ge 2^{n - 1}\}
+\{n \ge 1\}  w:= calcula(n) \{w \ge 2^{n - 1}\}
 \end{equation*}
 
 \end{enumerate}
