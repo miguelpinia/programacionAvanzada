@@ -1,0 +1,133 @@
+\begin{proof}[Solución]
+
+  Para demostrar la correctez del código anterior, tenemos que
+  demostrar usando la regla de inferencia de la asignación, sxoe cumple
+  la precondición del programa.
+
+  Entonces hay que determinar que se puede llegar a \{P\} = $\{n \ge
+  1\}$.
+
+  Entonces:
+
+  \begin{equation}
+    \label{hoare}
+    \{P\} = \{Q\}^V_E = \{w \ge 2^{n-1}\}^w_{calcula(n)} = \{calcula(n)
+    \ge 2 ^{n - 1}\}
+  \end{equation}
+
+  Ahora hay que demostrar el \textit{if} de la función calcula,
+  demostrando las ternas de Hoare \ref{if1} y \ref{if2}:
+
+  \begin{equation}
+    \label{if1}
+    \{c = 1 \land (n == 0 \lor n == 1)\} \hspace{2em} return 1 \hspace{2em} \{c == n!\}
+  \end{equation}
+
+  \begin{equation}
+    \label{if2}
+   \{c = 1 \land \neg (n == 0 \lor n == 1)\} \hspace{2em} for(i = 2; i \leq n;
+   n++)\hspace{1em} c = c * i \hspace{2em}\{c = n!\}
+  \end{equation}
+
+  P.D. \ref{if1} es válida. Demostración\\
+
+  Sabemos que:
+
+  Dado $\{P\} V:=E \{Q\} \Rightarrow \{P\} = \{Q\}^V_E = \{V=E, Q\}$
+
+  Usando la definición anterior tenemos que si:
+
+  \begin{equation*}
+    \{c = 1 \land (n == 0 \lor n == 1)\} \hspace{2em} \text{return}\hspace{1em} c
+    \hspace{2em} \{c = n!\}
+  \end{equation*}
+
+  entonces:
+
+  \begin{equation*}
+    \begin{split}
+      \{p\} &= \{c = n!\}^c_1\\
+      & = \{1 = n!\}\\
+      & = \{1 = 1! \lor 1 = 0!\}\\
+      & = \{\}\\
+      & \Rightarrow \{\} \hspace{2em} \text{return}\hspace{1em} c\hspace{2em} \{c == n!\}\\
+    \end{split}
+  \end{equation*}
+
+  Sabemos que $\{\}$ fortalece cualquier aseveración, por lo tanto
+  tenemos:
+
+  \begin{equation*}
+    \begin{split}
+      \{c = 1 \land \neg (n == 0 \lor n == 1)\} \Rightarrow \cancel{\{\}}\\
+      \Rightarrow \cancel{\{\}} \hspace{1em} \text{return}\hspace{1em}
+      c\hspace{1em} \{c == n!\}\\
+      \rule{6cm}{0.4pt}\\
+      \{c = 1 \land \neg (n == 0 \lor n == 1)\}\hspace{1em} \text{return}\hspace{1em}
+      c\hspace{1em} \{c == n!\}\\
+    \end{split}
+  \end{equation*}
+
+  Por lo tanto \ref{if1} es válida.\\
+
+  P.D. \ref{if2} es válida. Demostración:\\
+
+    Sabemos que:
+
+  Dado $\{P\} V:=E \{Q\} \Rightarrow \{P\} = \{Q\}^V_E = \{V=E, Q\}$
+
+  Usando la definición anterior tenemos que si:
+
+  \begin{equation*}
+    \{c = 1 \land \neg (n == 0 \lor n == 1)\} \hspace{1em} for(i = 2; i \leq n;
+    n++)\hspace{1em} c = c * i \hspace{1em}\{c = n!\}
+  \end{equation*}
+
+  Entonces, la ejecución del ciclo \textit{for}, la podemos reescribir
+  como c = n!, dado que va multiplicando i por su subsecuente hasta n.
+
+  Entonces:
+
+  \begin{equation*}
+    \begin{split}
+      \{p\} &= \{c = n!\}^c_{n!}\\
+      & = \{n! = n!\}\\
+      & = \{\}\\
+      & \Rightarrow \{\} \hspace{1em} for(i = 2; i \leq n;
+    n++)\hspace{1em} c = c * i \hspace{1em} \{c == n!\}\\
+    \end{split}
+  \end{equation*}
+
+
+    Sabemos que $\{\}$ fortalece cualquier aseveración, por lo tanto
+  tenemos:
+
+  \begin{equation*}
+    \begin{split}
+      \{c = 1 \land (n == 0 \lor n == 1)\} \Rightarrow \cancel{\{\}}\\
+      \Rightarrow \cancel{\{\}}\hspace{1em} for(i = 2; i \leq n;
+    n++)\hspace{1em} c = c * i \hspace{1em} \{c == n!\}\\
+      \rule{6cm}{0.4pt}\\
+      \{c = 1 \land (n == 0 \lor n == 1)\}\hspace{1em} for(i = 2; i \leq n;
+      n++)\hspace{1em} c = c * i \hspace{1em} \{c == n!\}\\
+    \end{split}
+  \end{equation*}
+
+  Por lo tanto \ref{if2} es válida.\\
+
+  Retomando \ref{hoare}, tenemos que:
+
+  \begin{equation}
+    \{P\} = \{Q\}^V_E = \{w \ge 2^{n-1}\}^w_{calcula(n)} = \{calcula(n)
+    \ge 2 ^{n - 1}\} = {n! \ge 2^{n - 1}}
+  \end{equation}
+
+  Entonces, hay que probar por inducción que $n! \ge 2^{n - 1}$ para
+  $n \ge 1$ para que por regla de fortalecimiento tengamos que $\{n
+  \ge 1\} \Rightarrow \{n! \ge 2^{n - 1}\}$.
+
+  \textbf{P.D.} $n! \ge 2^{n - 1}$ para $n \ge 1$\\
+  \textbf{Demostración:}\\
+  \textbf{Caso base:}
+
+\end{proof}

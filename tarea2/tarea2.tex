@@ -41,7 +41,7 @@
 {a = b} if a == b then m := a else m := b {m := a}
 \end{verbatim}
 
-\input{2.1c}
+\input{1}
 
 \item Explicar que hacen las siguientes rutinas, encontrando el
   invariante y demostrar que es válido por inducción matemática.
@@ -88,6 +88,8 @@
 {k > n} if (k < n) k := n else n:= k {n = k}
 \end{verbatim}
 
+\input{3}
+
 \item Dada la siguiente función:
 \begin{verbatim}
 public static int calcula(int n) {
@@ -103,8 +105,10 @@ public static int calcula(int n) {
   Demuestre que la siguiente terna de Hoare es válida:
 
 \begin{equation*}
-\{n \ge 1\}  w:= calcula(n) \{w \ge 2^{n - 1}\}
+\{n \ge 1\} \hspace{1cm} w:= calcula(n) \hspace{1cm} \{w \ge 2^{n - 1}\}
 \end{equation*}
+
+\input{4}
 
 \end{enumerate}
 
