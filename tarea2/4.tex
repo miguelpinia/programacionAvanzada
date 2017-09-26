@@ -15,7 +15,9 @@
     \ge 2 ^{n - 1}\}
   \end{equation}
 
-  Ahora hay que demostrar el \textit{if} de la función calcula,
+  Por lo tanto $\{calcula(n) \ge 2^{n - 1}\} \hspace{1em} w:= calcula(n) \hspace{1em} \{w \ge 2^{n - 1}\}$
+
+  Ahora hay que demostrar el \textit{if} de la función \textit{calcula},
   demostrando las ternas de Hoare \ref{if1} y \ref{if2}:
 
   \begin{equation}
@@ -29,7 +31,8 @@
    n++)\hspace{1em} c = c * i \hspace{2em}\{c = n!\}
   \end{equation}
 
-  P.D. \ref{if1} es válida. Demostración\\
+  \textbf{P.D}. \ref{if1} es válida.\\
+  \textbf{Demostración}\\
 
   Sabemos que:
 
@@ -70,7 +73,8 @@
 
   Por lo tanto \ref{if1} es válida.\\
 
-  P.D. \ref{if2} es válida. Demostración:\\
+  \textbf{P.D.} \ref{if2} es válida.\\
+  \textbf{Demostración:}\\
 
     Sabemos que:
 
@@ -128,6 +132,40 @@
 
   \textbf{P.D.} $n! \ge 2^{n - 1}$ para $n \ge 1$\\
   \textbf{Demostración:}\\
-  \textbf{Caso base:}
+  \textbf{Caso base:} n = 1
+  $\Rightarrow 1! \ge 2^{1 - 1} \Rightarrow 1 \ge 2^0 = 1 \Rightarrow
+  1 = 1$
+  Por lo tanto se cumple el caso base.\\
+  \textbf{Hipótesis de inducción:} Supongamos que se cumple para n:\\
+  \begin{equation*}
+    n! \ge 2^{n - 1}
+  \end{equation*}
+  \textbf{Paso inductivo}
+
+  \begin{equation*}
+    \begin{split}
+      (n + 1)! &= n!(n + 1)\\
+      & \ge 2^{n - 1}(n + 1) \hspace{2cm}\text{Por HI}\\
+      & > 2^{n - 1}2\\
+      & = 2^n\\
+    \end{split}
+  \end{equation*}
+
+  Entonces se cumple que $(n + 1)! \ge 2^n$. Por lo tanto se cumple
+  que $n! \ge 2^n$.
+
+  Entonces,
+
+    \begin{equation*}
+      \begin{split}
+        \{n \ge 1\} \Rightarrow \cancel{\{n! \ge 2^{n - 1}\}}\\
+        \cancel{\{n! \ge 2^{n - 1}\}}\hspace{1em} w:= calcula(n) \hspace{1em} \{w \ge 2^{n - 1}\}\\
+        \rule{6cm}{0.4pt}\\
+        \{n \ge 1\}\hspace{1em} w:= calcula(n) \hspace{1em} \{w \ge 2^{n - 1}\}\\
+    \end{split}
+  \end{equation*}
+
+  Por lo tanto la terna de Hoare $\{n \ge 1\}\hspace{1em} w:= calcula(n) \hspace{1em}
+  \{w \ge 2^{n - 1}\}$ es correcta.
 
 \end{proof}
