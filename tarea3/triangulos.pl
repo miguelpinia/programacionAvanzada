@@ -1,3 +1,21 @@
+arb(nil, _, nil) :- !.
+arb(I, _, D) :- arbol(I), arbol(D).
+
+% x_pert_arb(2, arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil))). <- true.
+% x_pert_arb(3, arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil))). <- false.
+x_pert_arb(X, arb(_, X, _)) :- !.
+x_pert_arb(X, arb(I, _, D)) :-
+    x_pert_arb(X, I), !;
+    x_pert_arb(X, D), !.
+
+% nods_arb(arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil)), N).
+nods_arb(nil, 0) :- !.
+nods_arb(arb(nil, _, nil), 1) :- !.
+nods_arb(arb(I, _, D), N) :-
+    nods_arb(I, N1),
+    nods_arb(D, N2),
+    N is N1 + N2 + 1.
+
 /*
  * EJERCICIO 2
  */
