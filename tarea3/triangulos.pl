@@ -1,4 +1,8 @@
 /*
+ * EJERCICIO 2
+ */
+
+/*
  * Identifica si tres números cumplen con la desigualdad del triángulo.
  */
 desigualdad_del_triangulo(X, Y, Z) :-
@@ -30,3 +34,43 @@ t_(X, Y, Z, 'Triángulo escaleno') :-
 triangulo(X, Y, Z) :-
     t_(X, Y, Z, Resultado),
     write(Resultado), !.
+
+
+/*
+ * EJERCICIO 3
+ */
+%Filtrado de elementos repetidos
+filtra([], []) :- !.
+filtra([X|Xs], Ys) :-
+   member(X, Xs),
+   !,
+   filtra(Xs, Ys).
+filtra([X|Xs], [Y|Ys]) :-
+   Y is X,
+   filtra(Xs, Ys).
+
+
+
+
+/*
+ * EJERCICIO 4
+ */
+suma([], [], []) :- !.
+suma([A|As], [B|Bs], [A_plus_B | ABs]) :-
+    A_plus_B is A + B
+    , suma(As, Bs, ABs), !.
+
+
+sumamatriz([[M1]], [[M2]], S) :-
+   forall(member(m1,M1), member(m2, M2), suma(m1, m2, S)).
+
+
+
+/*
+ * EJERCICIO 5
+ */
+ackermann(0,N,X) :- X is N+1.
+ackermann(M, 0, X) :- M>0, M1 is M-1, ackermann(M1, 1, X).
+ackermann(M, N, X) :- M>0, N>0, M1 is M-1, N1 is N-1,
+ackermann(M, N1, X1), ackermann(M1, X1, X).
+
