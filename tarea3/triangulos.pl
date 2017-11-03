@@ -57,6 +57,15 @@ triangulo(X, Y, Z) :-
 /*
  * EJERCICIO 3
  */
+
+% cuenta([a, b, b, a, c, c, d, d, d, e], N). <- N = 5
+% cuenta([b, a, n, a, n, a], N). <- N = 3
+% cuenta([a, b, c, d, e, f], N). <- N = 6
+cuenta([], 0) :- !.
+cuenta([X|Xs], N) :- not(member(X, Xs)), cuenta(Xs, N1), N is N1 + 1, !.
+cuenta([Y|Xs], N) :- member(Y, Xs), cuenta(Xs, N), !.
+
+
 %Filtrado de elementos repetidos
 filtra([], []) :- !.
 filtra([X|Xs], Ys) :-
