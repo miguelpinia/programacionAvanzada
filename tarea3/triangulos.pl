@@ -84,10 +84,11 @@ suma([A|As], [B|Bs], [A_plus_B | ABs]) :-
     A_plus_B is A + B
     , suma(As, Bs, ABs), !.
 
-
-sumamatriz([[M1]], [[M2]], S) :-
-   forall(member(m1,M1), member(m2, M2), suma(m1, m2, S)).
-
+% sumamatriz([[1, 2], [3, 4]], [[4, 3], [2, 1]], Res).
+sumamatriz([],[],[]) :- !.
+sumamatriz([V_1|Vs1],[V_2|Vs2], [V_sum|V_sums]) :-
+    suma(V_1, V_2, V_sum),
+    sumamatriz(Vs1, Vs2, V_sums), !.
 
 
 /*
