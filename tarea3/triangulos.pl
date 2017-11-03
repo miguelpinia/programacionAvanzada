@@ -1,14 +1,27 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   Ejercicio 1: Predicados sobre árboles.
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/*
+ * Define si algo es un árbol.
+ */
 arb(nil, _, nil) :- !.
 arb(I, _, D) :- arbol(I), arbol(D).
 
-% x_pert_arb(2, arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil))). <- true.
-% x_pert_arb(3, arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil))). <- false.
+/*
+ * Verifica si x pertenece al árbol dado.
+ * ?- x_pert_arb(2, arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil))). <- true.
+ * ?- x_pert_arb(3, arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil))). <- false.
+ */
 x_pert_arb(X, arb(_, X, _)) :- !.
 x_pert_arb(X, arb(I, _, D)) :-
     x_pert_arb(X, I), !;
     x_pert_arb(X, D), !.
 
-% nods_arb(arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil)), N).
+/*
+ * Cuenta el número de nodos que tiene un árbol
+ * ?- nods_arb(arb(arb(nil, 1, arb(nil, 2, nil)), 4, arb(nil, 5, nil)), N). <- N = 4
+ */
 nods_arb(nil, 0) :- !.
 nods_arb(arb(nil, _, nil), 1) :- !.
 nods_arb(arb(I, _, D), N) :-
@@ -16,9 +29,9 @@ nods_arb(arb(I, _, D), N) :-
     nods_arb(D, N2),
     N is N1 + N2 + 1.
 
-/*
- * EJERCICIO 2
- */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   Ejercicio 2: Determinación de triángulos
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /*
  * Identifica si tres números cumplen con la desigualdad del triángulo.
@@ -53,20 +66,24 @@ triangulo(X, Y, Z) :-
     t_(X, Y, Z, Resultado),
     write(Resultado), !.
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   Ejercicio 3: Predicados sobre listas.
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /*
- * EJERCICIO 3
+ * Cuenta el número de apariciones distintas de una lista.
+ * ?- cuenta([a, b, c, d, e, f], N). <- N = 6
+ * ?- cuenta([b, a, n, a, n, a], N). <- N = 3
+ * ?- cuenta([a, b, b, a, c, c, d, d, d, e], N). <- N = 5
  */
-
-% cuenta([a, b, b, a, c, c, d, d, d, e], N). <- N = 5
-% cuenta([b, a, n, a, n, a], N). <- N = 3
-% cuenta([a, b, c, d, e, f], N). <- N = 6
 cuenta([], 0) :- !.
 cuenta([X|Xs], N) :- not(member(X, Xs)), cuenta(Xs, N1), N is N1 + 1, !.
 cuenta([Y|Xs], N) :- member(Y, Xs), cuenta(Xs, N), !.
 
-
-%Filtrado de elementos repetidos
+/*
+ * Elimina los elementos duplicados de una lista.
+ * ?- filtra([a, b, b, a, c, c, d, d, d, e], N). N = [b, a, c, d, e].
+ */
 filtra([], []) :- !.
 filtra([X|Xs], Ys) :-
    member(X, Xs),
@@ -76,23 +93,35 @@ filtra([X|Xs], [X|Ys]) :-
    not(member(X, Xs)),
    filtra(Xs, Ys).
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   Ejercicio 4: Suma de matrices
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
- * EJERCICIO 4
+ * Suma dos vectores representados como listas.
  */
 suma([], [], []) :- !.
-suma([A|As], [B|Bs], [A_plus_B | ABs]) :-
-    A_plus_B is A + B
-    , suma(As, Bs, ABs), !.
+suma([A|As], [B|Bs], [A_plus_B|ABs]) :-
+    A_plus_B is A + B,
+    suma(As, Bs, ABs), !.
 
-% sumamatriz([[1, 2], [3, 4]], [[4, 3], [2, 1]], Res).
+/*
+ * Suma dos matrices representadas como listas de listas.
+ * ?- sumamatriz([[1, 2], [3, 4]], [[4, 3], [2, 1]], Res). Res = [[5, 5], [5, 5]].
+ */
 sumamatriz([],[],[]) :- !.
 sumamatriz([V_1|Vs1],[V_2|Vs2], [V_sum|V_sums]) :-
     suma(V_1, V_2, V_sum),
     sumamatriz(Vs1, Vs2, V_sums), !.
 
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   Ejercicio 5: Función de Ackerman
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 /*
- * EJERCICIO 5
+ * Función de Ackerman
+ * ?- ackermann(1, 2, X). X = 4.
  */
 ackermann(0,N,X) :-
     X is N+1, !.
