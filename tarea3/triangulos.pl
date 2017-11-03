@@ -72,12 +72,9 @@ filtra([X|Xs], Ys) :-
    member(X, Xs),
    !,
    filtra(Xs, Ys).
-filtra([X|Xs], [Y|Ys]) :-
-   Y is X,
+filtra([X|Xs], [X|Ys]) :-
+   not(member(X, Xs)),
    filtra(Xs, Ys).
-
-
-
 
 /*
  * EJERCICIO 4
