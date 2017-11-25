@@ -72,10 +72,11 @@ miZip (a:as) (b:bs) = (a, b):miZip as bs
 miembro :: Eq a => a -> [a] -> Bool
 miembro x = plegadol (\z y -> z || y == x) False
 
+-----------------------------------------------------------------------
+-- Ejercicio 1: Función para sumar matrices. Las matrices pueden ser --
+-- representadas como una lista de listas.                           --
+-----------------------------------------------------------------------
 
----------------------------------------------------------------------------------------------------------------
--- Ejercicio 1: Función para sumar matrices. Las matrices pueden ser representadas como una lista de listas. --
----------------------------------------------------------------------------------------------------------------
 {- Define el tipo para un renglon -}
 type Renglon = [Int]
 type Matriz = [Renglon]
