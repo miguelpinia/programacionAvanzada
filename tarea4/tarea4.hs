@@ -1,6 +1,4 @@
-{-#
-  OPTIONS_GHC -fno-warn-unused-binds
-#-}
+{-# OPTIONS_GHC -fno-warn-unused-binds #-}
 
 {-|
 Module: tarea4.hs
