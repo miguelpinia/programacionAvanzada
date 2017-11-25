@@ -48,6 +48,7 @@ filtro p (x:xs) =
     else filtro p xs
 
 {- Realiza la implementación de map -}
+miMap :: (a -> b) -> [a] -> [b]
 miMap fn [] = []
 miMap fn (x:xs) = fn x:miMap fn xs
 {- Implementa la función zip. -}
@@ -66,6 +67,7 @@ miembro x ys = plegadol (\z y -> z || y == x) False ys
 ---------------------------------------------------------------------------------------------------------------
 {- Define el tipo para un renglon -}
 type Renglon = [Int]
+type Matriz = [Renglon]
 
 {- Define la suma de vectores -}
 sumaVector :: Renglon -> Renglon -> Renglon
@@ -74,7 +76,7 @@ sumaVector a b =
     then miMap (\((a,b)) -> a + b) (miZip a b)
     else error "Los vectores no tienen la misma longitud"
 {- Define la suma de matrices. -}
-sumaMatriz :: [Renglon] -> [Renglon] -> [Renglon]
+sumaMatriz :: Matriz -> Matriz -> Matriz
 sumaMatriz a b =
   if longitud a == longitud b
     then miMap (\((r1, r2)) -> sumaVector r1 r2) (miZip a b)
@@ -93,6 +95,7 @@ iguales xs ys =
 
 {- Verifica si dos listas son iguales si contienen los mismos
 elementos cuando se comparan en forma de conjuntos. -}
+igualesSet :: Eq a => [a] -> [a] -> Bool
 igualesSet xs ys =
   plegadol (\z x -> z && (miembro x ys)) True xs &&
   plegadol (\z y -> z && (miembro y xs)) True ys
