@@ -34,10 +34,6 @@ cola [] = error "Error! La lista está vacía"
 cola (_:xs) = xs
 
 {- Función de plegado por la izquierda-}
--- plegadol fn val list
---   | esVacia list = val
---   | otherwise = plegadol fn (fn val (cabeza list)) (cola list)
-
 plegadol :: (a -> b -> a) -> a -> [b] -> a
 plegadol _ val [] = val
 plegadol fn val (x:xs) = plegadol fn (fn val x) xs
@@ -46,9 +42,6 @@ plegadol fn val (x:xs) = plegadol fn (fn val x) xs
 plegador :: (a -> b -> b) -> b -> [a] -> b
 plegador _ val [] = val
 plegador fn val (x:xs) = fn x (plegador fn val xs)
-
-
-
 
 {- Calcula la suma de los elementos de una lista de números enteros -}
 suma :: [Int] -> Int
@@ -92,13 +85,22 @@ type Matriz = [Renglon]
 mismaLongitud :: [a] -> [b] -> Bool
 mismaLongitud a b = longitud a == longitud b
 
-{- Define la suma de vectores -}
+{-
+   Define la suma de vectores sumando elemento por elemento.
+   Modo de uso:
+   sumaVector [1,2,3] [4,5,6]
+-}
 sumaVector :: Renglon -> Renglon -> Renglon
 sumaVector a b
   | mismaLongitud a b = miMap (miUncurry (+)) (miZip a b)
   | otherwise = error "Los vectores no tienen la misma longitud"
 
-{- Define la suma de matrices. -}
+{-
+   Realiza la suma de matrices ejecutando la suma de vectores por
+   renglón.
+   Modo de uso:
+   sumaMatriz [[1,2,3],[1,2,3]] [[4,5,6],[4,5,6]]
+-}
 sumaMatriz :: Matriz -> Matriz -> Matriz
 sumaMatriz a b
   | mismaLongitud a b = miMap (miUncurry sumaVector) (miZip a b)
@@ -109,18 +111,29 @@ sumaMatriz a b
 -- Ejercicio 2: Una función que indique que dos listas son iguales --
 --   aunque los elementos aparezcan en distinto orden.             --
 ---------------------------------------------------------------------
-
+{- Extrae todos los elementos de una lista que son iguales a x. -}
 extrae :: Eq a => a -> [a] -> [a]
 extrae x = filtro (== x)
 
-{- Verifica si dos listas son iguales por elementos -}
+{-
+   Verifica si dos listas son iguales por tener los mismos elementos y
+   la misma cantidad.
+   Modo de uso:
+   iguales [3,2,6,4,5,1] [1,2,3,4,5,6] <- Devuelve True
+   iguales [3,2,6,4,5] [1,2,3,4,5,6] <- Devuelve False
+-}
 iguales :: Eq a => [a] -> [a] -> Bool
 iguales xs ys =
   mismaLongitud xs ys &&
   plegadol (\z x -> z && extrae x xs == extrae x ys) True xs
 
-{- Verifica si dos listas son iguales si contienen los mismos
-elementos cuando se comparan en forma de conjuntos. -}
+{-
+   Verifica si dos listas son iguales si contienen los mismos
+   elementos cuando se comparan en forma de conjuntos.
+   Modo de uso:
+   igualesSet [5,2,4,10,1,6,3] [1,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,10] <- Devuelve True
+   igualesSet [5,2,4,10,1,6,3] [1,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6] <- Devuelve False
+-}
 igualesSet :: Eq a => [a] -> [a] -> Bool
 igualesSet xs ys =
   plegadol (\z x -> z && miembro x ys) True xs &&
@@ -131,10 +144,19 @@ igualesSet xs ys =
 --   ṕor la derecha y define otra usando plegado por la izquierda.                --
 ------------------------------------------------------------------------------------
 
-{- Dada una lista, calcula su inversa usando pleglado por la izquierda. -}
+{-
+   Dada una lista, calcula su inversa usando pleglado por la
+   izquierda.
+   Modo de uso:
+   inversal "juanito perez"
+-}
 inversal :: [a] -> [a]
 inversal = plegadol (miFlip (:)) []
-{- Dada una lista, calcula su inversa usando plegado por la derecha. 1-}
+{-
+   Dada una lista, calcula su inversa usando plegado por la derecha.
+   Modo de uso:
+   inversar "juanito perez"
+-}
 inversar :: [a] -> [a]
 inversar = plegador (\z x -> x ++ [z]) []
 
@@ -144,13 +166,21 @@ inversar = plegador (\z x -> x ++ [z]) []
 --   recibe como parámetros.                                   --
 -----------------------------------------------------------------
 
-{- Implementación de quicksort -}
+{-
+   Implementación de quicksort
+   Modo de uso:
+   qs [3,5,2,4,1,7,6]
+-}
 qs :: (Ord a) => [a] -> [a]
 qs [] = []
 qs (x:xs) = qs menor_que_x ++ [x] ++ qs mayor_que_x
   where menor_que_x = [y | y <- xs, y <= x]
         mayor_que_x = [y | y <- xs, y > x]
 
-{- Implemntación de ordenamiento de dos listas -}
+{-
+   Implementación de ordenamiento de dos listas:
+   Modo de uso:
+   ordena [3,5,2,4,1,7,6] [10,20,8,9,11,23,2,3]
+-}
 ordena :: (Ord a) => [a] -> [a] -> [a]
 ordena xs ys = qs (xs ++ ys)
